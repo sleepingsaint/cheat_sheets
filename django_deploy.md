@@ -42,8 +42,6 @@ Cheat Sheet for deploying Django application on **Heroku**
     * GIT is required for Heroku CLI Tools, ( if not ) [**download**](https://git-scm.com/downloads) it first.
 * Link to download [**Heroku CLI Tools**](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
 
----
-
 ## Logging into Heroku from Terminal
 
 * Open your terminal / command prompt and type the following command
@@ -53,7 +51,6 @@ Cheat Sheet for deploying Django application on **Heroku**
     * It will open browser to verify the user, ( if needed provide login credentials ).
     * Now you will be logged in to the Heroku.
 
----
 
 ## Initializing Git in Project Root
 
@@ -62,8 +59,6 @@ Cheat Sheet for deploying Django application on **Heroku**
 
         $ git add .
         $ git commit -m "My first commit"
-
----
 
 ## Creating App in Heroku
 
@@ -113,7 +108,6 @@ Cheat Sheet for deploying Django application on **Heroku**
         heroku git:remote -a <app_name>
         set git remote heroku to https://git.heroku.com/<app_name>.git
         ```
----
 
 
 ## Making app production ready
@@ -171,8 +165,6 @@ Cheat Sheet for deploying Django application on **Heroku**
         EMAIL_PASSWORD = os.environ['EMAIL_PASSWORD']
     ```
 
----
-
 ## Installing Dependencies
 
 * Whitenoise, Gunicorn, django_heroku
@@ -195,7 +187,6 @@ Cheat Sheet for deploying Django application on **Heroku**
     
         * More about **django_heroku** [here!](https://pypi.org/project/django-heroku/)
 
----
 
 ## Modifying Settings.py
 
@@ -237,7 +228,6 @@ Cheat Sheet for deploying Django application on **Heroku**
         ```
         * This will automatically configure **DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI** for your application.If you set the SECRET_KEY environment variable, it will automatically be used in your Django settings, too!
 
----
 
 ## Creating Required Files
 
@@ -262,7 +252,6 @@ Cheat Sheet for deploying Django application on **Heroku**
 
     * Check out the supported list of [python runtimes on heroku](https://devcenter.heroku.com/articles/python-runtimes)
 
----
 
 ## Adding Postgres
 
