@@ -4,6 +4,7 @@ Cheat sheet to create web applications by using django framework.
 Documentation for Django can be found [here!](https://docs.djangoproject.com/en/3.0/)
 
 * ***For windows users change python3 with python and pip3 with pip***
+---
 
 ## Contents:
 
@@ -20,6 +21,7 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 * [Querying Models](#querying-models)
 * [Django Admin Page](#django-admin-page)
 
+---
 
 ## Create a folder for your django project
     
