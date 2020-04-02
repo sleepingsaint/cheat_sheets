@@ -1,10 +1,33 @@
 # Django Cheat Sheet
+Cheat sheet to create web applications by using django framework.
+
+Documentation for Django can be found [here!](https://docs.djangoproject.com/en/3.0/)
+
+* ***For windows users change python3 with python and pip3 with pip***
+---
+
+## Contents:
+
+* [Creating Virtual Environment](#virtual-environment-(optional)) (optional)
+* [Installing Django](#installing-django)
+* [Getting Started](#getting-started-with-the-project)
+* [Creating App](#creating-a-app)
+* [Creating Views](#creating-views)
+* [Creating Models](#creating-models)
+* [Managing Templates and Static Files](#templates-and-static-files)
+* [Using Templates and Static Files](#using-the-templates-in-views)
+* [Creating Models](#creating-models)
+* [Saving Models](#saving-models)
+* [Querying Models](#querying-models)
+* [Django Admin Page](#django-admin-page)
+
+---
 
 ## Create a folder for your django project
     
         mkdir <project_folder>
 
-## Virtual Environment
+## Virtual Environment (Optional)
 * Navigate to the **project_folder**
 
         cd <project_folder>
@@ -19,7 +42,7 @@
         source <virtual_environment_name>/bin/activate
 
 ## Installing Django
-* Installing
+* Open your shell (after you activated your virtual environment - not needed) and run the following command
 
         pip3 install django
 
@@ -46,7 +69,7 @@
 
 * This directory is referred as ***Project Root***
 
-* Creating a app
+## Creating a app
 
         python3 manage.py startapp <app>
 
@@ -205,7 +228,7 @@
             </html>
         ```
 
-### Using the templates in views
+## Using the templates in views
 
 * We modify the **index_view** to use the templates
 
@@ -282,7 +305,7 @@
 
     * Note: including <app_name> is optional.
 
-* Saving Models:
+## Saving Models:
 
     ```python
         from app.models import TestModel
@@ -292,7 +315,7 @@
         test1.save()
     ```
 
-* Querying Models
+## Querying Models
 
     ```python
         from app.models import TestModel
