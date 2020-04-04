@@ -15,6 +15,9 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 * [Creating Models](#creating-models)
 * [Managing Templates and Static Files](#templates-and-static-files)
 * [Using Templates and Static Files](#using-the-templates-in-views)
+* [Serving Static Files](#serving-static-files)
+* [Media Files](#media-files)
+* [Serving Media Files](#serving-media-files)
 * [Creating Models](#creating-models)
 * [Saving Models](#saving-models)
 * [Querying Models](#querying-models)
@@ -151,54 +154,20 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 
 ## Templates and Static Files:
 
-* Inside your ***Project Root*** directory create two folders with name templates, static
+* Create two folders with names templates and static in each app you created
 
     * templates holds the HTML files of the apps
     * static folder holds the CSS, JAVASCRIPT files of the apps
 
-* Now we need to tell the django to look for the templates and static files in these folders whenever needed
-
-* In your project/settings.py make the following changes
-
-    * For templates modify the following lines in the TEMPLATES
-        
-        ```python
-            TEMPLATES = [
-                {
-                    #..
-                    'DIRS': [os.path.join(BASE_DIR, 'templates')],
-                    #..
-                },
-            ]
-        ```
-
-    * At the end of the file add the following lines
-
-        ```python
-            STATICFILES_DIRS = [
-                os.path.join(BASE_DIR, "static")
-            ]
-        ```
-
-* Now store the template files in templates folders by creating seperate sub folders for each app:
-
-        templates/
-            base.html
-            app1/
-                app1_index.html
-            app2/
-                app2_index.html
-
-* Similarly store the static files:
-
-        static/
-            app1/
-                app1_css.css
-                app1_js.js
-            app2/
-                app2_css.css
-                app2_js.js
-
+* Now each app structure looks like 
+    
+        app/
+            templates/
+                app_html.html
+            static/
+                app_css.css
+                app_js.js
+            
 * **base.html** in the templates directory
 
     * ***base.html*** is used as base file which holds components like navbar, footer which can be used in multiple files.  
@@ -231,12 +200,10 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 
 * creating files for the index_view
 
-        templates/
-            app/
+        app/
+            templates/
                 index.html
-        
-        static/
-            app/
+            static/
                 index.css
                 index.js
 
@@ -247,7 +214,7 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
         {% load static %}
 
         {% block style %}
-        <link type="stylesheet" rel="{% static 'app/index.css' %}">
+        <link type="stylesheet" rel="{% static 'index.css' %}">
         {% endblock %}
 
         {% block content %}
@@ -255,11 +222,12 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
         {% endblock %}
 
         {% block script %}
-        <script src="{% static 'app/index.js' %}">
+        <script src="{% static 'index.js' %}">
         {% endblock %}
     ```
 
     * **{% load static %}** loads the static files into the templates you use for the views
+    * {% static 'index.css' %} turns out to be localhost:8000/static/index.css
 
 * Now **app**/views.py:
 
@@ -271,6 +239,65 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
             return render(request, 'app/index.html', name="index")
     ```
 
+## Serving Static Files
+
+* By default Django serve static files in templates using **{% load static %}** don't serve static files through url i.e, we cannot access index.css through url like localhost:8000/static/index.css or localhost:8000/static/index.js , it will throw a server 404 error.
+
+* To access those files via url, add the following lines in 
+    
+    * In ** <project>/settings.py **
+    
+    ```python
+        STATIC_URL = '/static/'
+        STATICFILES_DIR = [
+            os.path.join(BASE_DIR, 'staticfilesdirectories')
+        ]
+    ```
+        * Here staticfilesdirectories indicate the places where you store the static files other than the static folder inside your apps
+    
+    * In ** <project>/urls.py **
+    
+    ```python
+    from django.conf import settings
+    from django.conf.urls.static import static
+    
+    urlpatterns = [
+        #...
+    ]
+    
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    
+    ```
+    
+## Media Files
+
+* Media files include files uploaded by the user or the images we want to use for our app, etc.
+
+* By default, Django stores files locally, using the MEDIA_ROOT and MEDIA_URL settings. 
+
+    * MEDIA_ROOT
+        * It contains the absolute path to the file system where Media files will be uploaded. It accepts a string, not a list or tuple.
+        * Create a new directory named **media** inside Django project root directory.
+        * Open project/settings.py file and add the following code to the end of the file, 
+        ```python
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+        ```
+    * MEDIA_URL
+        * This setting works similar to STATIC_URL and is used to access media files.
+        * Open <project>/settings.py file and add the following code to the end of the file.
+        ```python
+        MEDIA_URL = '/media/'
+        ```
+## Serving Media Files
+  
+    * Trying to access media files through url like localhost:8000/media/some_file.ext throws a 404 error.
+    * To access the file we need to something similar to [serving static files](#serving-static-files)
+    * Open your <project>/url.py file and add the following code to the file
+    ```python
+    from django.conf import settings
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ```
 ## Creating Models
 
 * Models represents the table in the databases
