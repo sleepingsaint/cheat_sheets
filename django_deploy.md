@@ -11,9 +11,9 @@ Cheat Sheet for deploying Django application on **Heroku**
 * [Intializing Git in project root](#initializing-git-in-project-root)
 * [Creating app in Heroku](#creating-app-in-heroku)
 * [Making app production ready](#making-app-production-ready)
-    * [Environment Variables](#environment-/-config-variables)
+    * [Environment / Config Variables](#environment-config-variables)
     * [Installing Dependencies](#installing-dependencies)
-    * [Modifying settings.py](#modifying-settings.py)
+    * [Modifying settings.py](#modifying-settings)
     * [Creating Required Files](#creating-required-files)
     * [Adding Postgres](#adding-postgres) (Optional)
 * [Deploying](#deploying)
@@ -108,7 +108,7 @@ Cheat Sheet for deploying Django application on **Heroku**
 
 ## Making app production ready
 
-## Environment / Config Variables
+## Environment Config Variables
 
 * First step is to take care of the sensitive information like 
     * SECRET_KEY
@@ -184,9 +184,11 @@ Cheat Sheet for deploying Django application on **Heroku**
         * More about **django_heroku** [here!](https://pypi.org/project/django-heroku/)
 
 
-## Modifying Settings.py
+## Modifying Settings
 
-*   Change Debug from True ( for development ) to False ( for production )
+* Open your **project/settings.py** and make the following changes.
+
+* Change Debug from True ( for development ) to False ( for production )
 
     ```python
     DEBUG = False
