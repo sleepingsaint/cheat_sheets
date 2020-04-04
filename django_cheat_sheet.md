@@ -245,7 +245,7 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 
 * To access those files via url, add the following lines in 
     
-    * In ** <project>/settings.py **
+    * In **project/settings.py**
     
     ```python
         STATIC_URL = '/static/'
@@ -253,9 +253,10 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
             os.path.join(BASE_DIR, 'staticfilesdirectories')
         ]
     ```
-        * Here staticfilesdirectories indicate the places where you store the static files other than the static folder inside your apps
+
+* Here staticfilesdirectories indicate the places where you store the static files other than the static folder inside your apps
     
-    * In ** <project>/urls.py **
+    * In **project/urls.py**
     
     ```python
     from django.conf import settings
@@ -290,12 +291,18 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
         ```
 ## Serving Media Files
   
-    * Trying to access media files through url like localhost:8000/media/some_file.ext throws a 404 error.
-    * To access the file we need to something similar to [serving static files](#serving-static-files)
-    * Open your <project>/url.py file and add the following code to the file
-    ```python
+* Trying to access media files through url like localhost:8000/media/some_file.ext throws a 404 error.
+* To access the file we need to something similar to [serving static files](#serving-static-files)
+* Open your <project>/url.py file and add the following code to the file
+   
+   ```python
     from django.conf import settings
     from django.conf.urls.static import static
+    
+    urlpatterns = [
+        #...
+    ]
+    
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     ```
 ## Creating Models
