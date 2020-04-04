@@ -11,7 +11,7 @@ Cheat Sheet for deploying Django application on **Heroku**
 * [Intializing Git in project root](#initializing-git-in-project-root)
 * [Creating app in Heroku](#creating-app-in-heroku)
 * [Making app production ready](#making-app-production-ready)
-    * [Environment / Config Variables](#environment-config-variables)
+    * [Environment & Config Variables](#environment-and-config-variables)
     * [Installing Dependencies](#installing-dependencies)
     * [Modifying settings.py](#modifying-settings)
     * [Creating Required Files](#creating-required-files)
@@ -108,7 +108,7 @@ Cheat Sheet for deploying Django application on **Heroku**
 
 ## Making app production ready
 
-## Environment Config Variables
+## Environment and Config Variables
 
 * First step is to take care of the sensitive information like 
     * SECRET_KEY
@@ -118,7 +118,7 @@ Cheat Sheet for deploying Django application on **Heroku**
 
 * One way to handle this problem is with **environment variables**
     * Environment varibles are safer when compared to having them as raw text in python files.
-    * ***In heroku environment variables are referred as Config Variables.***
+    * ***In Heroku, environment variables are referred as Config Variables.***
 
 * Saving Environment Variables
 
@@ -126,26 +126,29 @@ Cheat Sheet for deploying Django application on **Heroku**
 
         * **Listing Config Varibles**
 
-        ```
+            ```
             $ heroku config
             GITHUB_USERNAME: joesmith
             OTHER_VAR:    production
 
             $ heroku config:get GITHUB_USERNAME
             joesmith
-        ```
+            ```
 
         * **Setting Config Variables**
-        ```
+        
+            ```
             $ heroku config:set GITHUB_USERNAME=joesmith
             Adding config vars and restarting <app_name>... done, v12
             GITHUB_USERNAME: joesmith
-        ```
+            ```
+        
         * **Unsetting Config Variables**
-        ```
+        
+            ```
             $ heroku config:unset GITHUB_USERNAME
             Unsetting GITHUB_USERNAME and restarting myapp... done, v13
-        ```
+            ```
 
     * ***You can also edit config vars from your app’s Settings tab in the Heroku Dashboard***
 
