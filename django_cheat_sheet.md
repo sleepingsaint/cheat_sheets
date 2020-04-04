@@ -247,28 +247,28 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
     
     * In **project/settings.py**
     
-    ```python
+        ```python
         STATIC_URL = '/static/'
+
         STATICFILES_DIR = [
             os.path.join(BASE_DIR, 'staticfilesdirectories')
         ]
-    ```
+        ```
 
 * Here staticfilesdirectories indicate the places where you store the static files other than the static folder inside your apps
     
     * In **project/urls.py**
     
-    ```python
-    from django.conf import settings
-    from django.conf.urls.static import static
-    
-    urlpatterns = [
-        #...
-    ]
-    
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    
-    ```
+        ```python
+        from django.conf import settings
+        from django.conf.urls.static import static
+
+        urlpatterns = [
+            #...
+        ]
+
+        urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        ```
     
 ## Media Files
 
@@ -277,18 +277,24 @@ Documentation for Django can be found [here!](https://docs.djangoproject.com/en/
 * By default, Django stores files locally, using the MEDIA_ROOT and MEDIA_URL settings. 
 
     * MEDIA_ROOT
+        
         * It contains the absolute path to the file system where Media files will be uploaded. It accepts a string, not a list or tuple.
         * Create a new directory named **media** inside Django project root directory.
         * Open project/settings.py file and add the following code to the end of the file, 
-        ```python
-        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-        ```
+        
+            ```python
+            MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+            ```
+        
     * MEDIA_URL
+        
         * This setting works similar to STATIC_URL and is used to access media files.
-        * Open <project>/settings.py file and add the following code to the end of the file.
-        ```python
-        MEDIA_URL = '/media/'
-        ```
+        * Open project/settings.py file and add the following code to the end of the file.
+        
+            ```python
+            MEDIA_URL = '/media/'
+            ```
+        
 ## Serving Media Files
   
 * Trying to access media files through url like localhost:8000/media/some_file.ext throws a 404 error.
