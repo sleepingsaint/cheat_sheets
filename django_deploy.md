@@ -2,26 +2,22 @@
 
 Cheat Sheet for deploying Django application on **Heroku**
 
----
-
 ## Contents
 
 * [Installing GIT](#installing-git)
 * [Creating Heroku Account](https://www.heroku.com/)
 * [Installing Heroku CLI Tools](#installing-heroku-cli-tools)
-* [Login to Heroku from terminal](#login-from-terminal)
+* [Login to Heroku from terminal](#logging-into-heroku-from-terminal)
 * [Intializing Git in project root](#initializing-git-in-project-root)
 * [Creating app in Heroku](#creating-app-in-heroku)
 * [Making app production ready](#making-app-production-ready)
     * [Environment Variables](#environment-/-config-variables)
     * [Installing Dependencies](#installing-dependencies)
-    * [Modify settings.py](#modify-settings.py)
+    * [Modifying settings.py](#modifying-settings.py)
     * [Creating Required Files](#creating-required-files)
     * [Adding Postgres](#adding-postgres) (Optional)
 * [Deploying](#deploying)
 
-
----
 ## Installing GIT
 
 * Link to download [**GIT**](https://git-scm.com/downloads)
@@ -201,6 +197,16 @@ Cheat Sheet for deploying Django application on **Heroku**
     ```python
     ALLOWED_HOSTS=['https://<app_name>.herokuapp.com']
     ```
+    
+* Adding (if not there) MEDIA_ROOT and STATIC_ROOT
+   
+   ```python
+   MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+   ```
+   
+   * The above two lines indicates the folders where the static and media files will be stored by running command **python manage.py collectstatic**, this command will be run automatically while deploying the code, so no need to worry about that. 
+   
 *   For Whitenoise
 
     * Edit your settings.py file and add WhiteNoise to the MIDDLEWARE_CLASSES list, above all other middleware apart from Django’s SecurityMiddleware:
